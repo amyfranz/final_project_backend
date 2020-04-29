@@ -2,7 +2,7 @@ class LikesController < ApplicationController
     def create 
     like = Like.create(like_params)
         if like.valid?
-            render json: like, each_serializer: LikeSerializer, include: "**"
+            render json: like.post, each_serializer: PostSerializer
         else
             render json: {message: "did not create a new comment"}
         end
@@ -16,6 +16,7 @@ class LikesController < ApplicationController
     def destroy
         like = Like.find_by(id: params[:id])
         like.destroy
+        render json: like.post, each_serializer: PostSerializer
     end
 
     private

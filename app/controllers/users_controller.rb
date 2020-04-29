@@ -6,13 +6,13 @@ class UsersController < ApplicationController
 
     def index 
       users = User.all
-      render json: users, each_serializer: UserSerializer, include: "**"
+      render json: users, each_serializer: UserSerializer
     end
  
     def sign_in
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
-            render json: {user: user.id, token: generate_token({id: user.id})}, include: "**"
+            render json: {user: user.id, token: generate_token({id: user.id})}
         else
             render json: {message: "did not logged_in"}
         end
@@ -20,13 +20,18 @@ class UsersController < ApplicationController
    
     def update
       user= User.find_by(id: params[:id])
-      user = User.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email])
+      user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email], profile_pic: params[:user][:profile_pic])
       render json: user
     end
 
     def create
       @user = User.create(user_params)
       render json: @user
+    end
+
+    def destroy
+      user = User.find_by(id: params[:id])
+      user.destroy
     end
 
     def validate
@@ -46,6 +51,6 @@ class UsersController < ApplicationController
     end
     private 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+        params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :profile_pic)
     end
 end

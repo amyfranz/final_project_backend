@@ -20,14 +20,18 @@ class PetsController < ApplicationController
 
     def update
         pet= Pet.find_by(id: params[:id])
-        pet.update(pet_params)
-        pet.save
-        render json: pet
+        pet = pet.update(pet_params)
+        render json: pet, each_serializer: PetSerializer
+      end
+
+      def destroy
+        pet = Pet.find_by(id: params[:id])
+        pet.destroy
       end
 
     private
 
     def pet_params
-        params.require(:pet).permit(:bio, :user_id, :name)
+        params.require(:pet).permit(:bio, :user_id, :name, :profile_pic)
     end
 end

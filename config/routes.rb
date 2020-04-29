@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post "/sign_in", to: "users#sign_in"
   get "/validate", to: "users#validate"
   get "/search_user", to: "users#search_users"
+  get "/petsFollowers/:id", to: "followings#petsFollowers"
+  get "/userFollowing/:id", to: "followings#userFollowing"
 end

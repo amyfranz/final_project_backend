@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     def create 
         comment = Comment.create(comment_params)
         if comment.valid?
-            render json: comment, each_serializer: CommentSerializer, include: "**"
+            render json: comment.post, each_serializer: PostSerializer
         else
             render json: {message: "did not create a new comment"}
         end
