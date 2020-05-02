@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get "/search_user", to: "users#search_users"
   get "/petsFollowers/:id", to: "followings#petsFollowers"
   get "/userFollowing/:id", to: "followings#userFollowing"
+  get "/signout/:id", to: "users#signout"
+  get "/userUpdates/:id", to: "users#userUpdates"
 end

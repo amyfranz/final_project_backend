@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :username, :email, :profile_pic, :following_count, :pets
+  attributes :id, :first_name, :last_name, :username, :email, :profile_pic, :following_count, :pets, :loggedin
   
   def pets
     object.pets.select(:id, :name, :profile_pic, :bio)

@@ -18,6 +18,12 @@ class UsersController < ApplicationController
         end
     end
    
+    def signout
+      user = User.find_by(id: params[:id])
+      user.update(loggedin: Time.now)
+      render json: user
+    end
+
     def update
       user= User.find_by(id: params[:id])
       user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email], profile_pic: params[:user][:profile_pic])
@@ -25,8 +31,12 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.create(user_params)
-      render json: @user
+      user = User.create(user_params)
+      if user.valid?
+        render json: user
+      else
+        render json: {messages: user.errors.full_messages}
+      end
     end
 
     def destroy
@@ -48,6 +58,12 @@ class UsersController < ApplicationController
     def search_users
       users = User.all
       render json: users, each_serializer: SearchUserSerializer
+    end
+
+    def userUpdates
+      user = User.find_by(id: params[:id])
+      updates = user.followings.map {|f| f.pet}.map{|p| p.posts}.flatten.select{ |p| p.posted > user.loggedin }
+      render json: updates, each_serializer: UpdateSerializer
     end
     private 
     def user_params

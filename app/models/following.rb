@@ -1,4 +1,4 @@
 class Following < ApplicationRecord
-    belongs_to :pet
-    belongs_to :user
+    belongs_to :pet, optional: true
+    belongs_to :user, optional: true
 end

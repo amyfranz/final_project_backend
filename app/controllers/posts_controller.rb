@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
 
     def create 
-        post = Post.create(post_params) 
-        render json: post, each_serializer: PostSerializer
+        post = Post.new(post_params) 
+        post.posted = Time.now
+        post.save
+        render json: post.pet, each_serializer: PetSerializer
     end
 
     def index 
@@ -10,10 +12,10 @@ class PostsController < ApplicationController
         render json: posts, each_serializer: PostSerializer
     end 
 
-
     def show 
         posts = Post.find_by(id: params[:id])
-        render json: posts, each_serializer: PostSerializer
+        render json: posts.to_json(only: [:id, :image, :bio],
+            include: [comments: { only: [:id, :comment], include: [user:{only: [:username]}]}, likes:{only: [:id, :user_id]}])
     end 
 
     private
