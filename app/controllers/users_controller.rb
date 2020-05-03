@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
     def destroy
       user = User.find_by(id: params[:id])
+      user.update(loggedin: Time.now)
       user.destroy
     end
 

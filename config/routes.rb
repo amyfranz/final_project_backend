@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get "/userFollowing/:id", to: "followings#userFollowing"
   get "/signout/:id", to: "users#signout"
   get "/userUpdates/:id", to: "users#userUpdates"
+  get "/randomPosts", to: "posts#randomPosts"
 end

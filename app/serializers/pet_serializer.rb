@@ -4,6 +4,6 @@ class PetSerializer < ActiveModel::Serializer
   has_many :followings
 
   def posts
-    object.posts.select(:id, :image)
+    object.posts.select(:id, :image, :effect)
   end
 end

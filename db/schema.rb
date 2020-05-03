@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_093000) do
   create_table "posts", force: :cascade do |t|
     t.string "image"
     t.text "bio"
+    t.string "effect"
     t.integer "pet_id"
     t.datetime "posted"
   end
@@ -54,7 +55,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_093000) do
     t.string "email"
     t.string "password_digest"
     t.string "profile_pic"
-    t.date "DOB"
     t.datetime "loggedin"
   end
 
