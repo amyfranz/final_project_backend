@@ -2,7 +2,7 @@ class LikesController < ApplicationController
     def create 
     like = Like.create(like_params)
         if like.valid?
-            render json: like.post.to_json(only: [:id, :image, :bio],
+            render json: like.post.to_json(only: [:id, :image, :bio, :effect],
                 include: [comments: { only: [:id, :comment], include: [user:{only: [:username]}]}, likes:{only: [:id, :user_id]}])
         else
             render json: {message: "did not create a new comment"}
@@ -17,7 +17,7 @@ class LikesController < ApplicationController
     def destroy
         like = Like.find_by(id: params[:id])
         like.destroy
-        render json: like.post.to_json(only: [:id, :image, :bio],
+        render json: like.post.to_json(only: [:id, :image, :bio, :effect],
             include: [comments: { only: [:id, :comment], include: [user:{only: [:username]}]}, likes:{only: [:id, :user_id]}])
     end
 
