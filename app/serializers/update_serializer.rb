@@ -1,5 +1,5 @@
 class UpdateSerializer < ActiveModel::Serializer
-  attributes :id, :image, :pet_id  , :pet_profile_pic, :pet_name
+  attributes :id, :image, :pet_id  , :pet_profile_pic, :pet_name, :effect
 
   def pet_name
     object.pet.name
