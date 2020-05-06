@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
             render json: {user: user.id, token: generate_token({id: user.id})}
         else
-            render json: {message: "did not logged_in"}
+            render json: {message: "User details are incorrect"}
         end
     end
    
@@ -27,7 +27,11 @@ class UsersController < ApplicationController
     def update
       user= User.find_by(id: params[:id])
       user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email], profile_pic: params[:user][:profile_pic])
-      render json: user
+      if user.valid?
+        render json: {user: UserSerializer.new(user)}
+      else
+        render json: {messages: user.errors.full_messages}
+      end
     end
 
     def create
@@ -49,7 +53,6 @@ class UsersController < ApplicationController
       id = decode_token
       user = User.find_by(id: id)
       if user
-        # render json: {user: user, token: generate_token({ id: user.id}), pets: PetSerializer.new(pets), followings: followings}
         render json: {user: user.id, token: generate_token({id: user.id})}
       else
         render json: {message: "did not logged_in"}

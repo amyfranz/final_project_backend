@@ -2,9 +2,13 @@ class PostsController < ApplicationController
 
     def create 
         post = Post.new(post_params) 
-        post.posted = Time.now
-        post.save
-        render json: post.pet, each_serializer: PetSerializer
+        if post.valid?
+            post.posted = Time.now
+            post.save
+            render json: {pet: PetSerializer.new(post.pet)}
+        else
+            render json: {messages: post.errors.full_messages}
+        end
     end
 
     def index 

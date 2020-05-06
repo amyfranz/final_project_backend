@@ -4,6 +4,10 @@ class User < ApplicationRecord
     has_many :followings, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :comments, dependent: :destroy
-    validates :username, uniqueness: { case_sensitive: false }
-    validates :email, uniqueness: { case_sensitive: false }
+    validates :username, presence: true, uniqueness: { case_sensitive: false }
+    validates :email, presence: true ,uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP } 
+    validates :first_name, presence: true
+    validates :last_name, presence: true
+    validates :password, presence: true, on: :create
+    validates :profile_pic, presence: true
 end

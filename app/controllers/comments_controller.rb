@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
             render json: comment.post.to_json(only: [:id, :image, :bio, :effect],
                 include: [comments: { only: [:id, :comment], include: [user:{only: [:username]}]}, likes:{only: [:id, :user_id]}])
         else
-            render json: {message: "did not create a new comment"}
+            render json: {messages: comment.errors.full_messages}
         end
     end
 
