@@ -10,7 +10,7 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :password, presence: true, on: :create
     validates :profile_pic, presence: true
-    validate :edit_user_validation
+    validate :edit_user_validation, on: :update
 
     def edit_user_validation 
         id = decode_token
