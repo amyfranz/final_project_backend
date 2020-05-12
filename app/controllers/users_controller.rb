@@ -66,9 +66,10 @@ class UsersController < ApplicationController
 
     def userUpdates
       user = User.find_by(id: params[:id])
-      updates = user.followings.map {|f| f.pet}.map{|p| p.posts}.flatten.select{ |p| p.posted > user.loggedin }
+      updates = user.followings.map {|f| f.pet}.map{|p| p.posts}.flatten.select{ |p| p.posted > user.loggedin } #finds if any new posts have been made from the pets the user is following
       render json: updates, each_serializer: UpdateSerializer
     end
+
     private 
     def user_params
         params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :profile_pic)

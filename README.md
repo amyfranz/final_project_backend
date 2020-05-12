@@ -1,24 +1,23 @@
-# README
+# Petatude
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An Instagram clone for posting pictures of pets.
 
-Things you may want to cover:
+front-end code: [GitHub](https://github.com/amyfranz/final_project_frontend)
 
-* Ruby version
+front-end live: [netlify_version](https://petatude.netlify.app/)
 
-* System dependencies
+## Installation
 
-* Configuration
+1. Clone this repository and the backend repository linked above.
+2. In the backend repo, run bundle install in the terminal. Then run rails s
+3. In the frontend repo (this repo), run npm install in the terminal. Then run npm start to start up the app.
 
-* Database creation
+## Languages, Frameworks and APIs
 
-* Database initialization
+Backend: Ruby, Rails, JWT, BCrypt, PostgreSQL
 
-* How to run the test suite
+Frontend: Javascript, React, React-Router, CSS, Infinite-Scroll, Cloudinary
 
-* Services (job queues, cache servers, search engines, etc.)
+## Contributors:
 
-* Deployment instructions
-
-* ...
+Amy Franz: [GitHub](https://github.com/amyfranz)
