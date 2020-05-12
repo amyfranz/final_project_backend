@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::API
+
+    def secret
+        ENV["MY_SECRET"]
+    end
  
     def generate_token(payload)
-        JWT.encode(payload, 'my_s3cr3t')
+        JWT.encode(payload, secret)
     end
    
     def decode_token
         token = request.headers['Authorization']
         begin
-            JWT.decode(token, 'my_s3cr3t').first["id"]
+            JWT.decode(token, secret).first["id"]
         rescue
             {}
         end
