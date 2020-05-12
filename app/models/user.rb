@@ -10,18 +10,4 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :password, presence: true, on: :create
     validates :profile_pic, presence: true
-    validate :edit_user_validation, on: :update
-
-    def edit_user_validation 
-        token = request.headers['Authorization']
-        begin
-            puts JWT.decode(token, secret).first["id"]
-        rescue
-            {}
-        end
-    end
-
-    def secret
-        ENV["MY_SECRET"]
-    end
 end
