@@ -4,7 +4,7 @@ An Instagram clone for posting pictures of pets.
 
 front-end code: [GitHub](https://github.com/amyfranz/final_project_frontend)
 
-front-end live: [netlify_version](https://petatude.netlify.app/)
+front-end live: [GitHub](https://github.com/amyfranz/final_project_backend)
 
 ## Installation
 
