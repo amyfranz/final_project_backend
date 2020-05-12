@@ -13,6 +13,15 @@ class User < ApplicationRecord
     validate :edit_user_validation, on: :update
 
     def edit_user_validation 
-        puts decode_token
+        token = request.headers['Authorization']
+        begin
+            puts JWT.decode(token, secret).first["id"]
+        rescue
+            {}
+        end
+    end
+
+    def secret]
+        ENV["MY_SECRET"]
     end
 end
