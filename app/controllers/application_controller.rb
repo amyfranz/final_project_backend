@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
  
     def generate_token(payload)
-        byebug
         JWT.encode(payload, 'my_s3cr3t')
     end
    
