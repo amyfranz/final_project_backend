@@ -10,4 +10,10 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :password, presence: true, on: :create
     validates :profile_pic, presence: true
+    validate :edit_user_validation
+
+    def edit_user_validation 
+        id = decode_token
+        errors.add(:user, id)
+    end
 end
