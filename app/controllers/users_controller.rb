@@ -25,8 +25,9 @@ class UsersController < ApplicationController
     end
 
     def update
-      byebug
+      puts "decode_token"
       puts decode_token
+      puts "decode_token"
       user= User.find_by(id: params[:id])
       user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email], profile_pic: params[:user][:profile_pic])
       if user.valid?
