@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'pet-social-media-app.herokuapp.com/'
+    origins 'petatude.netlify.app/'
 
     resource '*',
       headers: :any,
