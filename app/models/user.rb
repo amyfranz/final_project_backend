@@ -21,7 +21,7 @@ class User < ApplicationRecord
         end
     end
 
-    def secret]
+    def secret
         ENV["MY_SECRET"]
     end
 end
