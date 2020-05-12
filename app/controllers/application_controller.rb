@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
-    # before_action :authorized
  
     def generate_token(payload)
+        byebug
         JWT.encode(payload, 'my_s3cr3t')
     end
    
