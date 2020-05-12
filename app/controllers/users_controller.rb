@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       user= User.find_by(id: params[:id])
       user.update(first_name: params[:user][:first_name], last_name: params[:user][:last_name], username: params[:user][:username], email: params[:user][:email], profile_pic: params[:user][:profile_pic])
       if user.valid?
-        render json: {user: UserSerializer.new(user)}
+        render json: {messages: "success"}
       else
         render json: {messages: user.errors.full_messages}
       end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :auth
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users
   resources :pets
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :likes
   resources :comments
+  resources :auth
 
   post "/sign_in", to: "users#sign_in"
   get "/validate", to: "users#validate"

@@ -1,9 +1,9 @@
 class PetsController < ApplicationController
     def create 
         pet = Pet.new(pet_params) 
-        if pet.valid? && pet.user.pets.length < 6
+        if pet.valid?
             pet.save; 
-            render json: {user: UserSerializer.new(pet.user)}
+            render json: {messages: "success"}
         else
             render json: {messages: pet.errors.full_messages}
         end
@@ -23,7 +23,7 @@ class PetsController < ApplicationController
         pet= Pet.find_by(id: params[:id])
         update = pet.update(pet_params)
         if update
-            render json: {pet: PetSerializer.new(pet)}
+            render json: {messages: "success"}
         else
             render json: {messages: pet.errors.full_messages}
         end
