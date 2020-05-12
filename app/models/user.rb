@@ -13,7 +13,6 @@ class User < ApplicationRecord
     validate :edit_user_validation, on: :update
 
     def edit_user_validation 
-        id = decode_token
-        errors.add(:user, id)
+        puts decode_token
     end
 end
